@@ -1,4 +1,4 @@
-package com.henrique.gerenciamento_biblioteca_api.Service;
+package com.henrique.gerenciamento_biblioteca_api.Security;
 
 import com.henrique.gerenciamento_biblioteca_api.Model.UserModel;
 

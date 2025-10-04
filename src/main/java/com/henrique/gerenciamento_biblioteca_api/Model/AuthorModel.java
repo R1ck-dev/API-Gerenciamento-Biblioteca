@@ -1,10 +1,13 @@
 package com.henrique.gerenciamento_biblioteca_api.Model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class AuthorModel {
 
     @Column
     private String name;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<BookModel> books;
 
     public AuthorModel() {
     }
@@ -36,6 +42,16 @@ public class AuthorModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<BookModel> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookModel> books) {
+        this.books = books;
+    }
+
+    
 
     
 }

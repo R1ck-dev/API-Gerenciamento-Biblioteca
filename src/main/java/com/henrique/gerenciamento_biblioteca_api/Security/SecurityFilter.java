@@ -11,7 +11,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 // Repositório e Serviço
 import com.henrique.gerenciamento_biblioteca_api.Repository.UserRepository;
-import com.henrique.gerenciamento_biblioteca_api.Service.TokenService; // Importante: Nossa interface customizada
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

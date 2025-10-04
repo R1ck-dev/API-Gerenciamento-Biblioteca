@@ -3,6 +3,7 @@ package com.henrique.gerenciamento_biblioteca_api.DTO;
 import com.henrique.gerenciamento_biblioteca_api.Enum.UserRoleEnum;
 
 public class UserDTO {
+    private String id;
     private String name;
     private String email;
     private String password;
@@ -41,6 +42,14 @@ public class UserDTO {
 
     public void setRole(UserRoleEnum role) {
         this.role = role;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

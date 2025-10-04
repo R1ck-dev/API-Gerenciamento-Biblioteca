@@ -39,8 +39,11 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // Registra Usuário
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // Login de Usuário
+                        .requestMatchers(HttpMethod.POST, "/books").permitAll() // Cria Livro
+                        .requestMatchers(HttpMethod.POST, "/authors").permitAll() // Cria Autor
+                        .requestMatchers(HttpMethod.GET, "/authors").permitAll() // Lista de Autores
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// DTOs
-import com.henrique.gerenciamento_biblioteca_api.DTO.AuthenticationDTO;
-import com.henrique.gerenciamento_biblioteca_api.DTO.LoginResponseDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.UserDTO;
-
+import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.AuthenticationDTO;
+import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.LoginResponseDTO;
 // Model e Services
 import com.henrique.gerenciamento_biblioteca_api.Model.UserModel;
-import com.henrique.gerenciamento_biblioteca_api.Service.TokenService; // Importante: Nossa interface customizada
+import com.henrique.gerenciamento_biblioteca_api.Security.TokenService;
 import com.henrique.gerenciamento_biblioteca_api.Service.UserService;
 
 @RestController

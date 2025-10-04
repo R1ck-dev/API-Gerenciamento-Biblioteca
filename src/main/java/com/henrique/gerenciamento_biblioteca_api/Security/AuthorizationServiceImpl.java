@@ -1,4 +1,4 @@
-package com.henrique.gerenciamento_biblioteca_api.Service.Impl;
+package com.henrique.gerenciamento_biblioteca_api.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

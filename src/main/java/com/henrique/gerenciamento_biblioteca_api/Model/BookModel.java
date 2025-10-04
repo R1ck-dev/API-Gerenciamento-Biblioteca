@@ -1,16 +1,23 @@
 package com.henrique.gerenciamento_biblioteca_api.Model;
 
+import java.util.List;
+
 import com.henrique.gerenciamento_biblioteca_api.Enum.BookStatusEnum;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn; 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "book")
 public class BookModel {
 
     @Id
@@ -29,6 +36,14 @@ public class BookModel {
     @Column
     @Enumerated(EnumType.STRING)
     private BookStatusEnum status; 
+
+    @ManyToMany
+    @JoinTable(
+        name = "book_author",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<AuthorModel> authors;
 
     public BookModel() {
     
@@ -74,5 +89,12 @@ public class BookModel {
         this.status = status;
     }
 
-    
+    public List<AuthorModel> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<AuthorModel> authors) {
+        this.authors = authors;
+    }
+
 }

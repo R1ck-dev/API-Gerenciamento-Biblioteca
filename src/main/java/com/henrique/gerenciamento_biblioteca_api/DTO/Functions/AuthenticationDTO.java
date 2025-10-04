@@ -1,4 +1,4 @@
-package com.henrique.gerenciamento_biblioteca_api.DTO;
+package com.henrique.gerenciamento_biblioteca_api.DTO.Functions;
 
 public class AuthenticationDTO {
     

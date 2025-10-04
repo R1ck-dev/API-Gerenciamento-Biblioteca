@@ -1,7 +1,10 @@
 package com.henrique.gerenciamento_biblioteca_api.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +22,15 @@ public class AuthorController {
         this.authorService = authorService;
     }
     
-    @PostMapping
+    @PostMapping("/authors")
     public ResponseEntity<String> createAuthor(@RequestBody AuthorDTO authorDTO) {
         authorService.createAuthor(authorDTO);
         return ResponseEntity.ok("Autor Criado com Sucesso!");
     }
+
+    @GetMapping("/authors")
+    public ResponseEntity<List<AuthorDTO>> getAuthors() {
+        return ResponseEntity.ok(authorService.getAuthors());
+    }
+
 }

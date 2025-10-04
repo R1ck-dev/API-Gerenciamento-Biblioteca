@@ -1,19 +1,15 @@
-package com.henrique.gerenciamento_biblioteca_api.DTO;
+package com.henrique.gerenciamento_biblioteca_api.DTO.Summary;
 
-import java.util.List;
-
-import com.henrique.gerenciamento_biblioteca_api.DTO.Summary.AuthorSummaryDTO;
 import com.henrique.gerenciamento_biblioteca_api.Enum.BookStatusEnum;
 
-public class BookDTO {
+public class BookSummaryDTO {
     private Long id;
     private String title;
     private String isbn;
     private int publication_year;
     private BookStatusEnum status;
-    private List<AuthorSummaryDTO> authors;
 
-    public BookDTO() {
+    public BookSummaryDTO() {
     }
 
     public Long getId() {
@@ -54,14 +50,6 @@ public class BookDTO {
 
     public void setStatus(BookStatusEnum status) {
         this.status = status;
-    }
-
-    public List<AuthorSummaryDTO> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<AuthorSummaryDTO> authors) {
-        this.authors = authors;
     }
 
 }
