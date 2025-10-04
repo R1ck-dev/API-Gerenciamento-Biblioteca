@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.henrique.gerenciamento_biblioteca_api.DTO.BookDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.CreateBookDTO;
+import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.UpdateRequestBookDTO;
 import com.henrique.gerenciamento_biblioteca_api.Model.BookModel;
 
 public interface BookService {
@@ -12,4 +13,6 @@ public interface BookService {
     List<BookDTO> getBooks();
 
     void deleteBook(Long id);
+
+    BookModel updateBook(Long id, UpdateRequestBookDTO updateDTO);
 }

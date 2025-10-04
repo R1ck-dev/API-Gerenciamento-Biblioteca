@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.henrique.gerenciamento_biblioteca_api.DTO.BookDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.CreateBookDTO;
+import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.UpdateRequestBookDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.Summary.AuthorSummaryDTO;
 import com.henrique.gerenciamento_biblioteca_api.Enum.BookStatusEnum;
 import com.henrique.gerenciamento_biblioteca_api.Model.AuthorModel;
@@ -84,6 +85,26 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public BookModel updateBook(Long id, UpdateRequestBookDTO updateDTO) {
+        BookModel book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado!"));
+
+        if (updateDTO.getTitle() != null && !updateDTO.getTitle().isEmpty()) {
+            book.setTitle(updateDTO.getTitle());
+        }
+
+        if (updateDTO.getIsbn() != null && !updateDTO.getIsbn().isEmpty()) {
+            book.setIsbn(updateDTO.getIsbn());
+        }
+
+        if (updateDTO.getPublication_year() != null) {
+            book.setPublication_year(updateDTO.getPublication_year());
+        }
+
+        return bookRepository.save(book);
     }
 
 }

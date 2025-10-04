@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.henrique.gerenciamento_biblioteca_api.DTO.AuthorDTO;
+import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.UpdateRequestAuthorDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.Summary.BookSummaryDTO;
 import com.henrique.gerenciamento_biblioteca_api.Model.AuthorModel;
 import com.henrique.gerenciamento_biblioteca_api.Model.BookModel;
@@ -31,15 +32,22 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     /*
-     * O controller quer receber uma lista de todos os autores. FindAll busca por todos os autores na tabela, mas retorna em Model. O padrão é trabalhar com DTOs. Por isso é preciso converter todos os autores Model, em autores DTO. Isso é feito normalmente para o Id e Name. Entretanto ao chegar na lista de livros do autor ele recebe os livros em uma lista de livros Model, então eles também precisão ser passados para DTO. Para isso eu criei a versão Summary dos DTOs de Author e Book. As versões Summary não contém as listas de autor e book relacionadas para evitar loops
+     * O controller quer receber uma lista de todos os autores. FindAll busca por
+     * todos os autores na tabela, mas retorna em Model. O padrão é trabalhar com
+     * DTOs. Por isso é preciso converter todos os autores Model, em autores DTO.
+     * Isso é feito normalmente para o Id e Name. Entretanto ao chegar na lista de
+     * livros do autor ele recebe os livros em uma lista de livros Model, então eles
+     * também precisão ser passados para DTO. Para isso eu criei a versão Summary
+     * dos DTOs de Author e Book. As versões Summary não contém as listas de autor e
+     * book relacionadas para evitar loops
      */
     @Override
     public List<AuthorDTO> getAuthors() {
         List<AuthorModel> authorsList = authorRepository.findAll();
 
         return authorsList.stream()
-                    .map(this::convertToAuthorDTO) // Mapeia cada AuthorModel para AuthorDTO
-                    .collect(Collectors.toList());
+                .map(this::convertToAuthorDTO) // Mapeia cada AuthorModel para AuthorDTO
+                .collect(Collectors.toList());
     }
 
     // Converte AuthorModel para AuthorDTO
@@ -52,8 +60,8 @@ public class AuthorServiceImpl implements AuthorService {
         // Converte a lista aninhada de BookModel para BookDTO
         if (authorModel.getBooks() != null) {
             List<BookSummaryDTO> bookSummaryDTO = authorModel.getBooks().stream()
-                                                .map(this::convertToBookDTO)
-                                                .collect(Collectors.toList());
+                    .map(this::convertToBookDTO)
+                    .collect(Collectors.toList());
             authorDTO.setBooks(bookSummaryDTO);
         }
         return authorDTO;
@@ -74,6 +82,19 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
+    }
+
+    @Override
+    public AuthorModel updateAuthor(Long id, UpdateRequestAuthorDTO updateDTO) {
+        AuthorModel author = authorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Autor não encontrado!"));
+
+        if (updateDTO.getName() != null && !updateDTO.getName().isEmpty()) {
+            author.setName(updateDTO.getName());
+        }
+
+        return authorRepository.save(author);
+
     }
 
 }
