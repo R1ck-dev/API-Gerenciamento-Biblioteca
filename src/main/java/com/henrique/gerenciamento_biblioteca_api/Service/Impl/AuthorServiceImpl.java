@@ -71,4 +71,9 @@ public class AuthorServiceImpl implements AuthorService {
         return bookSummaryDTO;
     }
 
+    @Override
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
+
 }

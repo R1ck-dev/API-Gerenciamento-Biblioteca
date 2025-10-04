@@ -42,8 +42,11 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // Registra Usuário
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // Login de Usuário
                         .requestMatchers(HttpMethod.POST, "/books").permitAll() // Cria Livro
+                        .requestMatchers(HttpMethod.GET, "/books").permitAll() // Lista de Livros
                         .requestMatchers(HttpMethod.POST, "/authors").permitAll() // Cria Autor
                         .requestMatchers(HttpMethod.GET, "/authors").permitAll() // Lista de Autores
+                        .requestMatchers(HttpMethod.DELETE, "/authors/{id}").permitAll() // Deleta autor por ID
+                        .requestMatchers(HttpMethod.DELETE, "/books/{id}").permitAll() // Deleta livro por ID
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

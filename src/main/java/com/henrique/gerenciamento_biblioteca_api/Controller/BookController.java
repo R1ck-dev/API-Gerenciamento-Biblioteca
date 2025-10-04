@@ -1,10 +1,16 @@
 package com.henrique.gerenciamento_biblioteca_api.Controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.henrique.gerenciamento_biblioteca_api.DTO.BookDTO;
 import com.henrique.gerenciamento_biblioteca_api.DTO.Functions.CreateBookDTO;
 import com.henrique.gerenciamento_biblioteca_api.Service.BookService;
 
@@ -21,5 +27,16 @@ public class BookController {
     public ResponseEntity<String> createBook(@RequestBody CreateBookDTO createBookDTO) {
         bookService.createBook(createBookDTO);
         return ResponseEntity.ok("Livro Criado com Sucesso!");
+    }
+
+    @GetMapping("/books")
+    public ResponseEntity<List<BookDTO>> getBooks() {
+        return ResponseEntity.ok(bookService.getBooks());
+    }
+
+    @DeleteMapping("/books/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.ok("Livro Deletado com Sucesso!");
     }
 }
