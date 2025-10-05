@@ -1,15 +1,14 @@
-package com.henrique.gerenciamento_biblioteca_api.DTO;
+package com.henrique.gerenciamento_biblioteca_api.DTO.Summary;
 
 import com.henrique.gerenciamento_biblioteca_api.Enum.UserRoleEnum;
 
-public class UserDTO {
+public class UserSummaryDTO {
     private Long id;
     private String name;
     private String email;
-    private String password;
     private UserRoleEnum role;
 
-    public UserDTO() {
+    public UserSummaryDTO() {
     }
 
     public String getName() {
@@ -26,14 +25,6 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public UserRoleEnum getRole() {
