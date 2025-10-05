@@ -75,11 +75,12 @@ public class UserController {
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        return ResponseEntity.ok("Usuário Deletado com Sucesso!");
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/users")
     public ResponseEntity<List<UserSummaryDTO>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
+
 }

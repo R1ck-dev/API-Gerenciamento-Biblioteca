@@ -51,6 +51,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/authors").permitAll() // Lista de Autores
                         .requestMatchers(HttpMethod.DELETE, "/authors/{id}").permitAll() // Deleta autor por ID
                         .requestMatchers(HttpMethod.PUT, "/authors/{id}").permitAll() // Atualiza Autor por ID
+                        .requestMatchers(HttpMethod.POST, "/loans").permitAll() // Cria Empréstimos
+                        .requestMatchers(HttpMethod.POST, "/loans/{id}/return").permitAll() // Devolve Empréstimos
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

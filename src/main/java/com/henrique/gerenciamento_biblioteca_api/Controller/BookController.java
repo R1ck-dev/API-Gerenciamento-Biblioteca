@@ -40,7 +40,7 @@ public class BookController {
     @DeleteMapping("/books/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return ResponseEntity.ok("Livro Deletado com Sucesso!");
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/books/{id}")

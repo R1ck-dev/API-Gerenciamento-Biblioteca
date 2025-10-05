@@ -16,5 +16,5 @@ public interface UserService {
     void deleteUser(Long id);
 
     List<UserSummaryDTO> getUsers();
-    
+
 } 
