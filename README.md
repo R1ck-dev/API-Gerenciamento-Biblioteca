@@ -15,7 +15,6 @@ A segurança é um pilar central, utilizando **Spring Security** com autenticaç
 * 👤 Gestão de Usuários com perfis (**ROLE_USER, ROLE_ADMIN**)
 * 📚 CRUD completo para Livros e Autores com relacionamentos **Muitos-para-Muitos**
 * 🔄 Sistema de Empréstimo de livros com controle de status e datas
-* 🔍 Consultas avançadas (livros por autor, empréstimos por usuário, etc.)
 * 🛡️ Proteção de endpoints baseada em papéis (**Role-Based Access Control**)
 
 ---
