@@ -41,18 +41,19 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // Registra Usuário
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // Login de Usuário
-                        .requestMatchers(HttpMethod.PUT, "/users/me").permitAll() // Atualiza Usuário
-                        .requestMatchers(HttpMethod.GET, "/users").permitAll() // Lista Usuários
-                        .requestMatchers(HttpMethod.POST, "/books").permitAll() // Cria Livro
-                        .requestMatchers(HttpMethod.GET, "/books").permitAll() // Lista de Livros
-                        .requestMatchers(HttpMethod.DELETE, "/books/{id}").permitAll() // Deleta livro por ID
-                        .requestMatchers(HttpMethod.PUT, "/books/{id}").permitAll() // Atualiza Livro por ID
-                        .requestMatchers(HttpMethod.POST, "/authors").permitAll() // Cria Autor
-                        .requestMatchers(HttpMethod.GET, "/authors").permitAll() // Lista de Autores
-                        .requestMatchers(HttpMethod.DELETE, "/authors/{id}").permitAll() // Deleta autor por ID
-                        .requestMatchers(HttpMethod.PUT, "/authors/{id}").permitAll() // Atualiza Autor por ID
-                        .requestMatchers(HttpMethod.POST, "/loans").permitAll() // Cria Empréstimos
-                        .requestMatchers(HttpMethod.POST, "/loans/{id}/return").permitAll() // Devolve Empréstimos
+                        .requestMatchers(HttpMethod.PUT, "/users/me").hasAnyRole("ADMIN", "USER") // Atualiza Usuário
+                        .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN") // Lista Usuários
+                        .requestMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN") // Deleta Usuários
+                        .requestMatchers(HttpMethod.POST, "/books").hasRole("ADMIN") // Cria Livro
+                        .requestMatchers(HttpMethod.GET, "/books").hasAnyRole("ADMIN", "USER") // Lista de Livros
+                        .requestMatchers(HttpMethod.DELETE, "/books/{id}").hasRole("ADMIN") // Deleta livro por ID
+                        .requestMatchers(HttpMethod.PUT, "/books/{id}").hasRole("ADMIN") // Atualiza Livro por ID
+                        .requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN") // Cria Autor
+                        .requestMatchers(HttpMethod.GET, "/authors").hasAnyRole("ADMIN", "USER") // Lista de Autores
+                        .requestMatchers(HttpMethod.DELETE, "/authors/{id}").hasRole("ADMIN") // Deleta autor por ID
+                        .requestMatchers(HttpMethod.PUT, "/authors/{id}").hasRole("ADMIN") // Atualiza Autor por ID
+                        .requestMatchers(HttpMethod.POST, "/loans").hasAnyRole("ADMIN", "USER") // Cria Empréstimos
+                        .requestMatchers(HttpMethod.POST, "/loans/{id}/return").hasAnyRole("ADMIN", "USER") // Devolve Empréstimos
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
